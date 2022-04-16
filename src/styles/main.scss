@@ -1,0 +1,16 @@
+@import './variable.scss';
+
+body {
+  height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+#nprogress .bar { background: $--color-primary !important;}
+
+.theme--light.v-data-table .v-data-table-header th.sortable.active .v-data-table-header__icon{
+  color: $--color-info !important;
+}
+

@@ -8,9 +8,16 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@mdi/font": "5.9.55",
+    "axios": "^0.26.1",
     "core-js": "^3.8.3",
+    "js-cookie": "^3.0.1",
+    "nprogress": "^0.2.0",
+    "roboto-fontface": "*",
+    "view-design": "^4.7.0",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
+    "vuetify": "^2.6.0",
     "vuex": "^3.6.2"
   },
   "devDependencies": {
@@ -21,12 +28,26 @@
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "babel-plugin-import": "^1.13.3",
+    "compression-webpack-plugin": "^9.2.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.0.3",
+    "image-minimizer-webpack-plugin": "^3.2.3",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-jpegtran": "^7.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-svgo": "^10.0.1",
     "prettier": "^2.4.1",
-    "vue-template-compiler": "^2.6.14"
+    "sass": "~1.32.0",
+    "sass-loader": "^10.0.0",
+    "script-ext-html-webpack-plugin": "^2.1.5",
+    "unplugin-vue-components": "^0.18.5",
+    "vue-cli-plugin-vuetify": "~2.4.8",
+    "vue-template-compiler": "^2.6.14",
+    "vuetify-loader": "^1.7.0",
+    "webpack-bundle-analyzer": "^4.5.0"
   },
   "eslintConfig": {
     "root": true,
