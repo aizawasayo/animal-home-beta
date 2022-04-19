@@ -233,7 +233,7 @@ export default {
       this.uploadPic = null
     },
     test() {
-      console.log(this.userInfo.startDate)
+      // console.log(this.userInfo.startDate)
     },
   },
 }

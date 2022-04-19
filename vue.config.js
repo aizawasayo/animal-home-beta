@@ -65,7 +65,7 @@ module.exports = defineConfig({
         new ImageMinimizerPlugin({
           test: /\.(jpe?g|png|gif|svg)$/i,
           minimizer: {
-            implementation: ImageMinimizerPlugin.imageminMinify,
+            implementation: ImageMinimizerPlugin.imageminGenerate,
             options: {
               plugins: [
                 ['gifsicle', { interlaced: true }],

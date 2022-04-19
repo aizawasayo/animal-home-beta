@@ -32,6 +32,7 @@ import { addGuide, getGuide } from '@/api/guide'
 import { addBoard, getBoard } from '@/api/board'
 import { addTurnip, getTurnip } from '@/api/turnip'
 import { addTrade, getTrade } from '@/api/trade'
+// import { addDesign, getDesign } from '@/api/design'
 import { textFilter } from '@/utils/'
 
 export default {
@@ -90,6 +91,9 @@ export default {
           getFun = getTrade
           addFun = addTrade
           break
+        // case 'design':
+        //   getFun = getDesign
+        //   addFun = addDesign
       }
       return { getFun, addFun }
     },

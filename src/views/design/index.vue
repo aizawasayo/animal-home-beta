@@ -90,7 +90,7 @@ export default {
       })
     },
     tabClick(e) {
-      console.log(e)
+      // console.log(e)
     },
   },
 }

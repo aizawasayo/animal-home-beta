@@ -1,10 +1,5 @@
 <template>
-  <info-detail
-    :breadNav="breadNav"
-    :getDetailApi="getDetailApi"
-    type="design"
-    hasInteract
-  >
+  <info-detail :breadNav="breadNav" :getDetailApi="getDetailApi" type="design">
     <template v-slot:title="{ title }"
       ><list-header :title="title" :has-tip="false"></list-header
     ></template>
