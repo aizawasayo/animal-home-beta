@@ -6,6 +6,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <!-- 使用CDN的 CSS 文件 -->
+    <% if (htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.css) { %>
+    <% for(var css of htmlWebpackPlugin.options.cdn.css) { %>
+    <link rel="preload" href="<%= css %>" as="style" />
+    <link rel="stylesheet" href="<%= css %>" />
+    <% } %>
+    <% } %>
+    <!-- 使用CDN的 CSS 文件 end -->
   </head>
   <body>
     <noscript>
@@ -13,5 +22,12 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <!-- 使用CDN加速的 JS 文件 -->
+    <% if (htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.js) { %>
+    <% for(var js of htmlWebpackPlugin.options.cdn.js) { %>
+    <script type="text/javascript" src="<%= js %>" ></script>
+    <% } %>
+    <% } %>
+    <!-- 使用CDN加速的 JS 文件 end -->
   </body>
 </html>

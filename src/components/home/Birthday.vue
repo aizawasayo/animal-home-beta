@@ -7,7 +7,7 @@
       >
       <span v-else>今天没有村民过生日哦～</span>
     </v-card-title>
-    <v-card-text justify="center" class="pa-4 mx-auto" @click="goDetail()">
+    <v-card-text justify="center" class="pa-4 mx-auto" @click="goDetail">
       <v-img
         v-if="islanderInfo.photoSrc"
         :src="realUrl + islanderInfo.photoSrc"

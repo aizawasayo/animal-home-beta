@@ -13,7 +13,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: () => import('@/views/home'), // home.vue 里的 name 也是 'Home'
+    component: () => import(/* webpackChunkName: "home" */ '@/views/home'), // home.vue 里的 name 也是 'Home'
     name: 'Home', // 此处举例说明：路由 name 命名时候尽量保证唯一性，并且和其对应的组件名称一致，以便于应用keep-alive
     meta: {
       title: '动森之家',
@@ -21,8 +21,7 @@ const routes = [
   },
   {
     path: '/guide',
-    component: () =>
-      import(/* webpackChunkName: "guide-router" */ '@/views/guide'),
+    component: () => import(/* webpackChunkName: "guide" */ '@/views/guide'),
     name: 'Guide',
     meta: {
       title: '攻略',
@@ -37,7 +36,8 @@ const routes = [
     children: [
       {
         path: '/',
-        component: () => import('@/views/design'),
+        component: () =>
+          import(/* webpackChunkName: "design" */ '@/views/design'),
         name: 'Design',
         meta: {
           title: '设计分享',
@@ -45,7 +45,8 @@ const routes = [
       },
       {
         path: 'add',
-        component: () => import('@/views/design/add'),
+        component: () =>
+          import(/* webpackChunkName: "design-add" */ '@/views/design/add'),
         name: 'DesignAdd',
         meta: {
           title: '发布我的设计',
@@ -56,7 +57,7 @@ const routes = [
   },
   {
     path: '/login',
-    component: () => import('@/views/login'),
+    component: () => import(/* webpackChunkName: "login" */ '@/views/login'),
     name: 'Login',
   },
   {
@@ -69,7 +70,8 @@ const routes = [
     children: [
       {
         path: '/',
-        component: () => import('@/views/user'),
+        component: () =>
+          import(/* webpackChunkName: "user-center" */ '@/views/user'),
         name: 'UserCenter',
         meta: {
           title: '用户中心',
@@ -78,7 +80,8 @@ const routes = [
       },
       {
         path: 'edit',
-        component: () => import('@/views/user/edit'),
+        component: () =>
+          import(/* webpackChunkName: "user-edit" */ '@/views/user/edit'),
         name: 'UserEdit',
         meta: {
           title: '修改个人信息',
@@ -87,7 +90,8 @@ const routes = [
       },
       {
         path: 'register',
-        component: () => import('@/views/user/register'),
+        component: () =>
+          import(/* webpackChunkName: "register" */ '@/views/user/register'),
         name: 'Register',
         meta: {
           title: '注册新用户',
@@ -95,7 +99,8 @@ const routes = [
       },
       {
         path: 'password',
-        component: () => import('@/views/user/password'),
+        component: () =>
+          import(/* webpackChunkName: "password" */ '@/views/user/password'),
         name: 'PswEdit',
         meta: {
           title: '修改密码',
@@ -106,7 +111,7 @@ const routes = [
   },
   {
     path: '/404',
-    component: () => import('@/views/404'),
+    component: () => import(/* webpackChunkName: "404" */ '@/views/404'),
     hidden: true,
   },
   {

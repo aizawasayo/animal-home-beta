@@ -61,10 +61,12 @@ export default {
     titleText() {
       let text = ''
       if (this.detailInfo) {
-        if (this.$attrs.breadText) {
-          text = this.$attrs.breadText
+        if (this.detailInfo.title) {
+          text = this.detailInfo.title
         } else if (this.detailInfo.name) {
           text = this.detailInfo.name
+        } else if (this.$attrs.breadText) {
+          text = this.$attrs.breadText
         }
       }
       return text

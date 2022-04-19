@@ -8,11 +8,11 @@
       >
     </v-card-title>
     <v-container fluid class="pa-4">
-      <v-row>
+      <v-row class="my-0">
         <v-col cols="6" class="py-0">
           <v-row dense>
             <v-col
-              :class="guide.flex === 12 ? 'pt-0' : ''"
+              :class="guide.flex === 12 ? 'pt-0 mb-1' : ''"
               v-for="(guide, i) in picGuide"
               :key="guide.title + i"
               :cols="guide.flex"

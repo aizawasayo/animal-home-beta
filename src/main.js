@@ -5,7 +5,7 @@ import store from './store'
 import '@/utils/permission' // 全局导航守卫
 import vuetify from './plugins/vuetify'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
-import '@mdi/font/css/materialdesignicons.css'
+// import '@mdi/font/css/materialdesignicons.css'
 import 'view-design/dist/styles/iview.css'
 import * as commonApi from '@/utils/common'
 import * as filters from './filters' // global filters

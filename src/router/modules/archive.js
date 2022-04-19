@@ -13,7 +13,8 @@ const archiveRouter = {
   children: [
     {
       path: 'islander',
-      component: () => import('@/views/archive/islander'),
+      component: () =>
+        import(/* webpackChunkName: "islander" */ '@/views/archive/islander'),
       name: 'Islander',
       meta: {
         title: '岛民',
@@ -22,7 +23,8 @@ const archiveRouter = {
     museumRouter,
     {
       path: 'furniture',
-      component: () => import('@/views/archive/furniture'),
+      component: () =>
+        import(/* webpackChunkName: "furniture" */ '@/views/archive/furniture'),
       name: 'Furniture',
       meta: {
         title: '家具',
@@ -30,7 +32,8 @@ const archiveRouter = {
     },
     {
       path: 'clothing',
-      component: () => import('@/views/archive/clothing'),
+      component: () =>
+        import(/* webpackChunkName: "clothing" */ '@/views/archive/clothing'),
       name: 'Clothing',
       meta: {
         title: '服饰',
@@ -38,7 +41,8 @@ const archiveRouter = {
     },
     {
       path: 'plant',
-      component: () => import('@/views/archive/plant'),
+      component: () =>
+        import(/* webpackChunkName: "plant" */ '@/views/archive/plant'),
       name: 'Plant',
       meta: {
         title: '植物',
@@ -46,7 +50,8 @@ const archiveRouter = {
     },
     {
       path: 'material',
-      component: () => import('@/views/archive/material'),
+      component: () =>
+        import(/* webpackChunkName: "material" */ '@/views/archive/material'),
       name: 'Material',
       meta: {
         title: '素材',
@@ -54,7 +59,8 @@ const archiveRouter = {
     },
     {
       path: 'tool',
-      component: () => import('@/views/archive/tool'),
+      component: () =>
+        import(/* webpackChunkName: "tool" */ '@/views/archive/tool'),
       name: 'Tool',
       meta: {
         title: '工具',
@@ -62,7 +68,8 @@ const archiveRouter = {
     },
     {
       path: 'recipe',
-      component: () => import('@/views/archive/recipe'),
+      component: () =>
+        import(/* webpackChunkName: "recipe" */ '@/views/archive/recipe'),
       name: 'Recipe',
       meta: {
         title: 'DIY配方',
@@ -70,7 +77,8 @@ const archiveRouter = {
     },
     {
       path: 'record',
-      component: () => import('@/views/archive/record'),
+      component: () =>
+        import(/* webpackChunkName: "record" */ '@/views/archive/record'),
       name: 'Record',
       meta: {
         title: '唱片',

@@ -9,7 +9,8 @@ const museumRouter = {
   children: [
     {
       path: 'fish',
-      component: () => import('@/views/museum/fish'),
+      component: () =>
+        import(/* webpackChunkName: "fish" */ '@/views/museum/fish'),
       name: 'Fish',
       meta: {
         title: '鱼类',
@@ -17,7 +18,8 @@ const museumRouter = {
     },
     {
       path: 'insect',
-      component: () => import('@/views/museum/insect'),
+      component: () =>
+        import(/* webpackChunkName: "insect" */ '@/views/museum/insect'),
       name: 'Insect',
       meta: {
         title: '昆虫',
@@ -25,7 +27,8 @@ const museumRouter = {
     },
     {
       path: 'fossil',
-      component: () => import('@/views/museum/fossil'),
+      component: () =>
+        import(/* webpackChunkName: "fossil" */ '@/views/museum/fossil'),
       name: 'Fossil',
       meta: {
         title: '化石',
@@ -33,7 +36,8 @@ const museumRouter = {
     },
     {
       path: 'artwork',
-      component: () => import('@/views/museum/artwork'),
+      component: () =>
+        import(/* webpackChunkName: "artwork" */ '@/views/museum/artwork'),
       name: 'Artwork',
       meta: {
         title: '艺术品',
@@ -41,7 +45,8 @@ const museumRouter = {
     },
     {
       path: 'halobios',
-      component: () => import('@/views/museum/halobios'),
+      component: () =>
+        import(/* webpackChunkName: "halobios" */ '@/views/museum/halobios'),
       name: 'Halobios',
       meta: {
         title: '海洋生物',

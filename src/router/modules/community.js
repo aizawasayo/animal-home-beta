@@ -8,7 +8,8 @@ const communityRouter = {
   children: [
     {
       path: 'board',
-      component: () => import('@/views/community/board'),
+      component: () =>
+        import(/* webpackChunkName: "board" */ '@/views/community/board'),
       name: 'Board',
       meta: {
         title: '森友墙',
@@ -16,7 +17,10 @@ const communityRouter = {
     },
     {
       path: 'board/add',
-      component: () => import('@/views/community/board/add'),
+      component: () =>
+        import(
+          /* webpackChunkName: "board-add" */ '@/views/community/board/add'
+        ),
       name: 'BoardAdd',
       meta: {
         title: '发布我的信息',
@@ -25,7 +29,8 @@ const communityRouter = {
     },
     {
       path: 'turnip',
-      component: () => import('@/views/community/turnip'),
+      component: () =>
+        import(/* webpackChunkName: "turnip" */ '@/views/community/turnip'),
       name: 'Turnip',
       meta: {
         title: '菜市场',
@@ -33,7 +38,10 @@ const communityRouter = {
     },
     {
       path: 'turnip/add',
-      component: () => import('@/views/community/turnip/add'),
+      component: () =>
+        import(
+          /* webpackChunkName: "turnip-add" */ '@/views/community/turnip/add'
+        ),
       name: 'TurnipAdd',
       meta: {
         title: '发布我的大头菜信息',
@@ -42,7 +50,8 @@ const communityRouter = {
     },
     {
       path: 'trade',
-      component: () => import('@/views/community/trade'),
+      component: () =>
+        import(/* webpackChunkName: "trade" */ '@/views/community/trade'),
       name: 'Trade',
       meta: {
         title: '交易区',
@@ -50,7 +59,10 @@ const communityRouter = {
     },
     {
       path: 'trade/add',
-      component: () => import('@/views/community/trade/add'),
+      component: () =>
+        import(
+          /* webpackChunkName: "trade-add" */ '@/views/community/trade/add'
+        ),
       name: 'TradeAdd',
       meta: {
         title: '发布我的交易信息',

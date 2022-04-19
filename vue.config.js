@@ -2,8 +2,28 @@ const { defineConfig } = require('@vue/cli-service')
 const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV)
 const CompressionPlugin = require('compression-webpack-plugin')
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin')
+// const { extendDefaultPlugins } = require('svgo')
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+
+// 样式和js的CDN外链，会插入到index.html中
+const cdn = {
+  // 开发环境
+  dev: {
+    css: [],
+    js: [],
+  },
+  // 生产环境
+  build: {
+    css: [],
+    js: ['https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js'],
+  },
+}
+
+const externals = {
+  vue: 'Vue',
+  // vuetify: 'Vuetify'
+}
 
 module.exports = defineConfig({
   transpileDependencies: ['vuetify'],
@@ -36,26 +56,43 @@ module.exports = defineConfig({
           minRatio: 0.8,
           deleteOriginalAssets: false, // 是否删除原始文件只保留压缩后的文件
         }),
-        new ImageMinimizerPlugin({
-          minimizerOptions: {
-            // Lossless optimization with custom option
-            // Feel free to experiment with options for better result for you
-            plugins: [
-              ['gifsicle', { interlaced: true }],
-              ['jpegtran', { progressive: true }],
-              ['optipng', { optimizationLevel: 5 }],
-              // Svgo configuration here https://github.com/svg/svgo#configuration
-            ],
-          },
-        }),
         new BundleAnalyzerPlugin()
       )
-    }
 
+      config.optimization.minimizer = [
+        //...config.optimization.minimizer,
+        '...',
+        new ImageMinimizerPlugin({
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          minimizer: {
+            implementation: ImageMinimizerPlugin.imageminMinify,
+            options: {
+              plugins: [
+                ['gifsicle', { interlaced: true }],
+                ['jpegtran', { progressive: true }],
+                ['optipng', { optimizationLevel: 5 }],
+                // Svgo configuration here https://github.com/svg/svgo#configuration
+              ],
+            },
+          },
+        }),
+      ]
+      config.externals = externals
+    }
+    config.name = '动森之家'
     config.plugins = [...config.plugins, ...plugins]
   },
   chainWebpack: config => {
     if (IS_PROD) {
+      config.module
+        .rule('fonts')
+        .test(/\.(woff2?|eot|ttf|otf)(\?.*)?$/i)
+        .set('type', 'asset')
+        .set('generator', {
+          filename: `fonts/[name].[hash:8][ext]`,
+          publicPath:
+            'https://cdn.jsdelivr.net/gh/aizawasayo/cdn-animal-home/dist/',
+        })
       config
         .plugin('ScriptExtHtmlWebpackPlugin')
         .after('html')
@@ -66,6 +103,7 @@ module.exports = defineConfig({
           },
         ])
         .end()
+
       config.optimization.runtimeChunk('single')
       config.optimization.splitChunks({
         chunks: 'all',
@@ -76,6 +114,17 @@ module.exports = defineConfig({
             priority: -10,
             chunks: 'initial',
           },
+          vuetify: {
+            name: 'chunk-vuetify',
+            priority: 10,
+            test: /[\\/]node_modules[\\/]_?vuetify(.*)/,
+          },
+          // viewDesign: {
+          //   name: 'chunk-viewDesign',
+          //   priority: 20,
+          //   test: /[\\/]node_modules[\\/]view-design[\\/]/,
+          //   reuseExistingChunk: true,
+          // },
           common: {
             name: `chunk-common`,
             minChunks: 2,
@@ -85,6 +134,12 @@ module.exports = defineConfig({
         },
       })
     }
+    // 添加 cdn 参数到 htmlWebpackPlugin 配置中
+    config.plugin('html').tap(args => {
+      args[0].cdn = IS_PROD ? cdn.build : cdn.dev
+      args[0].title = '动森之家'
+      return args
+    })
   },
   devServer: {
     // compress: true, // 默认值
