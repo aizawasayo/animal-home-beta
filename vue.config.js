@@ -31,7 +31,7 @@ module.exports = defineConfig({
   productionSourceMap: false,
   // publicPath:
   //   IS_PROD
-  //     ? 'https://cdn.jsdelivr.net/gh/aizawasayo/cdn-animal-admin-beta/dist/'
+  //     ? 'https://cdn.jsdelivr.net/gh/aizawasayo/cdn-animal-home-beta/dist/'
   //     : '/',
   configureWebpack: config => {
     const plugins = []
