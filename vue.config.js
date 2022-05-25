@@ -16,7 +16,7 @@ const cdn = {
   // 生产环境
   build: {
     css: [],
-    js: ['https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js'],
+    js: ['https://unpkg.com/vue@2.6.14/dist/vue.min.js'],
   },
 }
 
@@ -91,7 +91,7 @@ module.exports = defineConfig({
         .set('generator', {
           filename: `fonts/[name].[hash:8][ext]`,
           publicPath:
-            'https://cdn.jsdelivr.net/gh/aizawasayo/cdn-animal-home/dist/',
+            'https://fastly.jsdelivr.net/gh/aizawasayo/cdn-animal-home/dist/',
         })
       config
         .plugin('ScriptExtHtmlWebpackPlugin')

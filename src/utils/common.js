@@ -70,11 +70,13 @@ export async function multiUpload(uploadList) {
     let resFile = await compressFile(f)
     formData.append('photoSrc', resFile, f.name)
   }
+
   try {
     const { data } = await uploadMult(formData)
     // target.$root.$dialogLoader.showSnackbar(res.message, {
     //   color: 'success',
     // })
+
     const photoList = []
     data.forEach(pic => {
       let src = pic.path
@@ -97,6 +99,7 @@ export function clearFiles(target, dataObj) {
 export function resetForm(target) {
   target.$refs.addForm.reset()
   target.$refs.addForm.resetValidation()
+  if (target.uploadList && target.uploadList.length) target.uploadList = []
 }
 
 export async function handleDelete(deleteFun, id, type, callback) {

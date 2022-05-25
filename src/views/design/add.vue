@@ -129,7 +129,6 @@ export default {
           this.commonApi.resetForm(this)
           this.$router.push('/design')
         } catch (err) {
-          console.log(err)
           $Vue.$dialogLoader.showSnackbar(err.message, {
             color: 'error',
           })

@@ -23,6 +23,7 @@
             multiple
             prepend-icon="mdi-camera"
             :rules="formRules.require"
+            @change="fileList => commonApi.fileChange(fileList, this)"
             @click:clear="() => commonApi.clearFiles(this, 'newBoard')"
           ></v-file-input>
         </v-col>
@@ -33,6 +34,7 @@
             label="说明"
             hint="灵感来源，设计思路等等，畅所欲言"
             placeholder="请输入"
+            :rules="formRules.require"
           ></v-textarea>
         </v-col>
       </v-row>
@@ -119,16 +121,14 @@ export default {
   methods: {
     async submit() {
       if (this.$refs.addForm.validate()) {
-        // this.newBoard.photoSrc = this.newBoard.photoSrc.concat(this.uploadList)
         this.addTopicInfo()
         this.getTimeVal()
-        this.uploadList = []
         this.newBoard.user = this.userId
         try {
           this.newBoard.photoSrc = await this.commonApi.multiUpload(
             this.uploadList
           )
-          const res = await addDesign(this.newBoard)
+          const res = await addBoard(this.newBoard)
           $Vue.$dialogLoader.showSnackbar(res.message, {
             color: 'success',
           })
