@@ -76,9 +76,9 @@
                 class="comment-delete pl-4"
                 @click="
                   () =>
-                    commonApi.handleDelete(deleteApi, item._id, type, () =>
-                      getList()
-                    )
+                    commonApi.handleDelete(deleteApi, item._id, type, () => {
+                      commentCB('$pull', item._id)
+                    })
                 "
                 ><v-icon small class="mr-1">mdi-trash</v-icon>删除</span
               >
@@ -213,6 +213,11 @@ export default {
           $Vue.$dialogLoader.showSnackbar(err.message, { color: 'error' })
         )
     },
+    commentCB(type, cid) {
+      this.addFun({ _id: this.aid, [type]: { comments: cid } })
+      this.getList()
+      this.$emit('change-comment')
+    },
     submit() {
       if (this.$refs.addForm.validate()) {
         this.comment.aid = this.aid
@@ -225,8 +230,7 @@ export default {
               color: 'success',
             })
             this.commonApi.resetForm(this)
-            this.addFun({ _id: this.aid, $push: { comments: res.data._id } })
-            this.getList()
+            this.commentCB('$push', res.data._id)
           })
           .catch(err =>
             $Vue.$dialogLoader.showSnackbar(err.message, {

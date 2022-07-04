@@ -162,6 +162,7 @@ export default {
         contactDetail: '', //详细联系方式
         detail: '', // 上岛说明
         psw: '',
+        comments: [],
       },
       formRules: {
         require: [v => !!v || '不能为空！'],

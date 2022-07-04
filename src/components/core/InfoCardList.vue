@@ -207,7 +207,7 @@ export default {
     }
   },
   created() {
-    this.getList()
+    // this.getList()
     if (this.configObj.getOptionKeys)
       this.commonApi.getOptionsByKeys(this.configObj.getOptionKeys, this)
   },

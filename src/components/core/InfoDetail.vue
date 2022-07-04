@@ -19,6 +19,7 @@
     </v-card>
     <operation
       v-if="hasInteract"
+      ref="operation"
       :type="type"
       :title="detailInfo && detailInfo.detail"
     />
@@ -26,6 +27,7 @@
       v-if="hasComment"
       :type="type"
       :default-text="commentDefault"
+      @change-comment="changeComment"
     ></comment>
     <v-spacer></v-spacer>
     <!-- <slot
@@ -99,6 +101,9 @@ export default {
         this.breadNavProcess()
         this.loading = false
       })
+    },
+    changeComment() {
+      this.$refs.operation.getDetail()
     },
   },
 }

@@ -75,6 +75,7 @@ export default {
         icon: '',
         color: '',
         created_time: null,
+        comments: [],
       },
       formRules: {
         require: [v => !!v || '不能为空！'],
