@@ -27,7 +27,7 @@
             label="确认原密码"
             placeholder="请输入"
             required
-            :error-messages="emailMatchError()"
+            :error-messages="pswMatchError()"
           ></v-text-field>
         </v-col>
         <v-col cols="12">
@@ -116,7 +116,7 @@ export default {
         })
       }
     },
-    emailMatchError() {
+    pswMatchError() {
       return this.userInfo.oldPsw === this.userInfo.password
         ? ''
         : '两遍密码不一致，请重新填写！'

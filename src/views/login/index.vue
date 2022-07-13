@@ -28,7 +28,49 @@
             @click:append="pswShow = !pswShow"
           ></v-text-field>
         </v-col>
+        <v-col cols="8">
+          <v-text-field
+            v-model="loginForm.phone"
+            :counter="20"
+            :rules="loginRules.username"
+            label="手机号码"
+            placeholder="请输入手机号码"
+            prepend-inner-icon="mdi-phone"
+            required
+          ></v-text-field>
+        </v-col>
+        <v-col cols="4">
+          <v-tooltip bottom color="rgba(76, 175, 80, 0.9)">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                :disabled="!validPhone(loginForm.phone)"
+                color="primary"
+                large
+                :style="{ float: 'right' }"
+                @click="sendMsg"
+                v-bind="attrs"
+                v-on="on"
+              >
+                发送验证码
+              </v-btn>
+            </template>
+            <span>验证码只做了测试接口，只有我自己的号码可以发送😂</span>
+          </v-tooltip>
+        </v-col>
       </v-row>
+      <div class="agreement">
+        <v-checkbox v-model="agreement">
+          <template v-slot:label>
+            <div>
+              我同意
+              <a target="_blank" href="xxx" @click.stop> 服务协议 </a>、
+              <a target="_blank" href="xxx" @click.stop> 隐私政策 </a>
+              和
+              <a target="_blank" href="xxx" @click.stop> 儿童保护协议 </a>
+            </div>
+          </template>
+        </v-checkbox>
+      </div>
       <div class="d-flex justify-lg-space-between mt-4">
         <v-btn
           :disabled="!valid"
@@ -54,11 +96,19 @@
 </template>
 
 <script>
+import { sendMessage } from '@/api/user'
+import { validPhoneNumber } from '@/utils/validate'
+
 export default {
   name: 'Login',
   data() {
     return {
-      loginForm: { username: 'aizawasayo', password: 'iwnini122900' },
+      loginForm: {
+        username: 'aizawasayo',
+        password: 'iwnini123123',
+        phone: '18668216011',
+        yzm: '',
+      },
       valid: false,
       loginRules: {
         username: [v => !!v || '用户名必填！'],
@@ -82,6 +132,7 @@ export default {
       ],
       redirect: undefined,
       snackbar: false,
+      agreement: false,
     }
   },
   watch: {
@@ -103,6 +154,10 @@ export default {
   methods: {
     login() {
       if (this.$refs.loginForm.validate()) {
+        if (!this.agreement)
+          return $Vue.$dialogLoader.showSnackbar('必须勾选用户协议！', {
+            color: 'error',
+          })
         this.valid = true
         // console.log(this.$route)
         // return
@@ -132,6 +187,26 @@ export default {
         })
       }
     },
+    validPhone(phone) {
+      return validPhoneNumber(phone)
+    },
+    sendMsg() {
+      if (validPhoneNumber(this.loginForm.phone)) {
+        sendMessage({ phone: this.loginForm.phone })
+          .then(res => {
+            $Vue.$dialogLoader.showSnackbar('发送成功！', { color: 'success' })
+          })
+          .catch(err => {
+            $Vue.$dialogLoader.showSnackbar(err.message, {
+              color: 'error',
+            })
+          })
+      } else {
+        $Vue.$dialogLoader.showSnackbar('请输入正确的用户名和密码！', {
+          color: 'error',
+        })
+      }
+    },
     register() {
       this.$router.push('/user/register')
     },
@@ -145,5 +220,13 @@ export default {
 }
 .v-btn {
   width: 150px;
+}
+.agreement {
+  font-size: 14px;
+
+  a {
+    color: #80deea;
+    font-weight: bold;
+  }
 }
 </style>

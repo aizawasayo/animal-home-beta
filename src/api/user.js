@@ -15,6 +15,10 @@ export function logout() {
   })
 }
 
+export function sendMessage(data) {
+  return request({ url: '/admin/message', method: 'post', data })
+}
+
 export function addUser(data) {
   return request({
     url: 'admin/user',
